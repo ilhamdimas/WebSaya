@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduPay — QRIS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="receipt-screen">
+  <div class="card receipt">
+    <p class="receipt-eyebrow">Pembayaran QRIS</p>
+    <h2>Tagihan SPP</h2>
+
+    <div class="qr-frame">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=EDUPAY123" alt="Kode QRIS">
+    </div>
+
+    <div class="receipt-amount">Rp 750.000</div>
+    <p class="receipt-note">Berlaku 15 menit · kode EDUPAY123</p>
+
+    <button class="btn btn-stamp" onclick="bayar()">Saya Sudah Bayar</button>
+
+    <div class="stamp" id="stamp">LUNAS</div>
+    <div class="receipt-edge"></div>
+  </div>
+</div>
+
+<script>
+function bayar(){
+  document.getElementById('stamp').classList.add('show');
+}
+</script>
+
+</body>
+</html>

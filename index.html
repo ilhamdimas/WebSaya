@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ilham Dimas Fadelianto — Portofolio</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:        #0B0E14;
+    --surface:   #11151F;
+    --surface-2: #161B27;
+    --line:      #232A3A;
+    --text:      #E7EAF2;
+    --muted:     #8A93A6;
+    --accent:    #5EEAD4; /* terminal teal */
+    --accent-2:  #FFB454; /* warm amber for secondary highlight */
+    --danger:    #FF6B6B;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+  }
+
+  h1, h2, h3, h4, h5, .display{
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .mono{ font-family: 'JetBrains Mono', monospace; }
+
+  a{ text-decoration: none; }
+
+  ::selection{ background: var(--accent); color: #06201C; }
+
+  /* ---------- Eyebrow / section labels ---------- */
+  .eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .eyebrow::before{
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  section{ scroll-margin-top: 110px; }
+
+  /* ---------- Navbar ---------- */
+  .navbar{
+    background: rgba(11,14,20,0.85) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .navbar-brand{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--text) !important;
+    letter-spacing: 0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .navbar-brand .dot{ color: var(--accent); }
+  .brand-logo{
+    width: 44px;
+    height: 44px;
+    display: block;
+  }
+  .nav-link{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--muted) !important;
+    margin: 0 6px;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-link:hover{ color: var(--text) !important; }
+  .toggle-btn{ cursor: pointer; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 140px 8% 60px;
+    background:
+      radial-gradient(60% 50% at 85% 20%, rgba(94,234,212,0.10), transparent),
+      var(--bg);
+    gap: 60px;
+  }
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 50px;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-greeting{
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+  .hero h1.name{
+    font-size: clamp(38px, 5.5vw, 62px);
+    font-weight: 700;
+    line-height: 1.08;
+    margin: 0 0 16px;
+    color: var(--text);
+  }
+  .hero .role{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .hero .role .cursor{
+    display: inline-block;
+    width: 9px;
+    height: 18px;
+    background: var(--accent);
+    margin-left: 4px;
+    animation: blink 1s steps(1) infinite;
+    vertical-align: -3px;
+  }
+  @keyframes blink{ 50%{ opacity: 0; } }
+
+  .btn-row{ display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary-custom{
+    background: var(--accent);
+    color: #06201C;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary-custom:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(94,234,212,0.25);
+    color: #06201C;
+  }
+  .btn-outline-custom{
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line);
+    padding: 12px 26px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-outline-custom:hover{
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* Terminal window — the signature element */
+  .terminal{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+  }
+  .terminal-bar{
+    background: var(--surface-2);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-side{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 18px;
+  }
+  .hero-photo{
+   .hero-photo{
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+    object-fit: cover;
+    border: none; /* Hilangkan garis */
+    box-shadow: 0 24px 48px rgba(0,0,0,0.45);
+    flex-shrink: 0;
+}
+  }
+  .hero-side .terminal{ flex: 1; min-width: 0; }
+  @media (max-width: 575px){
+    .hero-side{ flex-direction: column; }
+    .hero-photo{ width: 80px; height: 80px; }
+  }
+  .terminal-dot{ width: 11px; height: 11px; border-radius: 50%; }
+  .terminal-bar .t-title{
+    margin-left: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .terminal-body{
+    padding: 22px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .t-prompt{ color: var(--accent); }
+  .t-key{ color: #C792EA; }
+  .t-string{ color: var(--accent-2); }
+  .t-comment{ color: var(--muted); }
+  .t-out{ color: var(--text); }
+
+  /* ---------- About ---------- */
+  .about-section{
+    padding: 100px 8%;
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+  }
+  .about-grid{
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 50px;
+    align-items: start;
+  }
+  .profile-img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    filter: grayscale(15%);
+  }
+  .about-text h2{
+    font-size: 32px;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  .about-text p{
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 620px;
+  }
+
+  /* ---------- Pendidikan ---------- */
+  .pendidikan-section{
+    padding: 90px 8%;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+  .pendidikan-section h2{
+    font-size: 30px;
+    margin-bottom: 8px;
+  }
+  .pendidikan-section p.sub{
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+  .campus-card{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 36px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-2);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .campus-card:hover{
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .img-potensi{
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #fff;
+    padding: 10px;
+  }
+  .campus-card .campus-name{
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .campus-card .campus-link{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  /* ---------- Project ---------- */
+  .project-section{
+    padding: 100px 8%;
+    background: var(--bg);
+  }
+  .project-section .section-head{
+    margin-bottom: 50px;
+  }
+  .project-section h2{
+    font-size: 32px;
+  }
+  .project-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+  @media (max-width: 991px){
+    .project-grid{ grid-template-columns: 1fr; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .profile-img{ width: 140px; height: 140px; }
+    .hero-grid{ grid-template-columns: 1fr; }
+  }
+
+  .proj-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .proj-card:hover{
+    transform: translateY(-6px);
+    border-color: var(--accent);
+  }
+  .proj-thumb{
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    filter: saturate(85%);
+    transition: filter 0.3s;
+  }
+  .proj-card:hover .proj-thumb{ filter: saturate(110%); }
+  .proj-body{ padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .proj-tag{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent-2);
+  }
+  .proj-card h5{
+    font-size: 19px;
+    margin: 0;
+    color: var(--text);
+  }
+  .proj-card p{
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    flex: 1;
+  }
+  .proj-link{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .proj-link:after{ content: " →"; }
+
+  /* ---------- Contact ---------- */
+  .contact-section{
+    padding: 100px 8%;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .contact-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .contact-grid h2{ font-size: 32px; margin-bottom: 14px; }
+  .contact-grid p{ color: var(--muted); line-height: 1.8; }
+  .contact-box{
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 30px;
+  }
+  .contact-box .form-control{
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 12px 14px;
+    border-radius: 8px;
+  }
+  .contact-box .form-control:focus{
+    background: var(--bg);
+    color: var(--text);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(94,234,212,0.15);
+  }
+  .contact-box .form-control::placeholder{ color: var(--muted); }
+  .btn-kirim{
+    background: var(--accent);
+    color: #06201C;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    width: 100%;
+    transition: transform 0.2s;
+  }
+  .btn-kirim:hover{ transform: translateY(-2px); }
+  @media (max-width: 767px){ .contact-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- Footer ---------- */
+  .footer-kedua{
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    padding: 26px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  /* ---------- Light mode (default = dark above; this is the optional toggle) ---------- */
+  body.light-mode{
+    background: #F7F7F2;
+    color: #1A1A1A;
+  }
+  body.light-mode .hero,
+  body.light-mode .about-section,
+  body.light-mode .project-section{ background: #F7F7F2; }
+  body.light-mode .pendidikan-section,
+  body.light-mode .contact-section{ background: #EFEFE6; }
+  body.light-mode .proj-card,
+  body.light-mode .terminal,
+  body.light-mode .campus-card,
+  body.light-mode .contact-box{
+    background: #FFFFFF;
+    border-color: #E2E2D8;
+  }
+  body.light-mode .terminal-bar{ background: #F1F1E9; }
+  body.light-mode .navbar{ background: rgba(247,247,242,0.9) !important; border-bottom-color: #E2E2D8; }
+  body.light-mode .navbar-brand, body.light-mode .hero h1.name,
+  body.light-mode .about-text h2, body.light-mode .pendidikan-section h2,
+  body.light-mode .proj-card h5, body.light-mode .contact-grid h2{ color: #1A1A1A; }
+  body.light-mode .nav-link{ color: #5A5A50 !important; }
+  body.light-mode .nav-link:hover{ color: #1A1A1A !important; }
+  body.light-mode .about-text p, body.light-mode .pendidikan-section p.sub,
+  body.light-mode .proj-card p, body.light-mode .contact-grid p,
+  body.light-mode .hero .role, body.light-mode .footer-kedua{ color: #5A5A50; }
+  body.light-mode .btn-outline-custom{ color: #1A1A1A; border-color: #D8D8CC; }
+  body.light-mode .contact-box .form-control{ background: #F7F7F2; color: #1A1A1A; border-color: #D8D8CC; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#home">
+      <img src="Ini folder isi foto/Logo ilham dimas f.png" alt="Logo" class="brand-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: var(--line);">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pendidikan">Pendidikan</a></li>
+        <li class="nav-item"><a class="nav-link" href="#project">Project</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+        <li class="nav-item">
+          <span class="nav-link toggle-btn" onclick="toggleDarkMode()" title="Toggle tema">🌓</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div data-aos="fade-up">
+      <div class="hero-greeting"> halo, semuanya 👋</div>
+      <h1 class="name">Ilham Dimas<br>Fadelianto</h1>
+      <div class="role">Web Developer · Designer · Programmer<span class="cursor"></span></div>
+      <div class="btn-row">
+        <a href="#project" class="btn-primary-custom">Lihat Project</a>
+        <a href="#contact" class="btn-outline-custom">Hubungi Saya</a>
+      </div>
+    </div>
+
+    <div data-aos="fade-left" data-aos-delay="150">
+      <div class="hero-side">
+        <img src="Ini folder isi foto/pasfoto transparan.png" alt="Foto Ilham Dimas Fadelianto" class="hero-photo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about-section" id="about">
+  <div class="eyebrow">Tentang Saya</div>
+  <div class="about-grid">
+    <img src="Ini folder isi foto/pasfoto.jpeg" alt="Foto Profil" class="profile-img" data-aos="fade-right">
+    <div class="about-text" data-aos="fade-up">
+      <h2>Tentang Saya</h2>
+      <p>Saya adalah seorang developer yang suka membuat website modern, aplikasi, dan desain UI/UX yang menarik. Saya senang mengubah ide menjadi produk digital yang rapi, fungsional, dan nyaman digunakan — mulai dari tampilan antarmuka hingga logika di baliknya.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pendidikan -->
+<section class="pendidikan-section" id="pendidikan">
+  <div class="eyebrow" style="justify-content:center;">Pendidikan</div>
+  <h2 data-aos="fade-up">Riwayat Pendidikan</h2>
+  <p class="sub" data-aos="fade-up">Sedang belajar pada program dan universitas berikut</p>
+
+  <a href="https://upu.siakadcloud.com" target="_blank" rel="noopener" data-aos="zoom-in" style="display:inline-block;">
+    <div class="campus-card">
+      <img src="Ini folder isi foto/logo potensi.jpg" alt="Universitas Potensi Utama" class="img-potensi">
+      <span class="campus-name">Universitas Potensi Utama</span>
+      <span class="campus-link">siakadcloud.com →</span>
+    </div>
+  </a>
+</section>
+
+<!-- Project -->
+<section class="project-section" id="project">
+  <div class="section-head" data-aos="fade-up">
+    <div class="eyebrow">Project</div>
+    <h2>Project Saya</h2>
+  </div>
+
+  <div class="project-grid">
+
+    <div class="proj-card" data-aos="fade-up">
+      <a href="webumkm.html">
+        <img src="Ini folder isi foto/webumkm.png" alt="Website UMKM" class="proj-thumb">
+      </a>
+      <div class="proj-body">
+        <span class="proj-tag">WEB · UMKM</span>
+        <h5>Website UMKM</h5>
+        <p>Berfungsi sebagai toko digital, katalog produk 24/7, dan alat pemasaran untuk meningkatkan kredibilitas, memperluas jangkauan pasar, serta efisiensi biaya operasional. Membantu meningkatkan penjualan lewat visibilitas di mesin pencari.</p>
+        <a href="webumkm.html" class="proj-link">Lihat project</a>
+      </div>
+    </div>
+
+    <div class="proj-card" data-aos="fade-up" data-aos-delay="100">
+      <a href="kopisejati.html">
+        <img src="Ini folder isi foto/kopisejati.png" alt="Aplikasi Kasir" class="proj-thumb">
+      </a>
+      <div class="proj-body">
+        <span class="proj-tag">WEB · KopiSejati</span>
+        <h5>Web Kopi Sejati</h5>
+        <p>Kopi ini Menghadirkan seni dan biji kopi pilihan terbailk dari petani lokal untuk menciptakan harmoni rasa sempurna di setiap cangkir pagi anda</p>
+        <a href="kopisejati.html" class="proj-link">Lihat project</a>
+      </div>
+    </div>
+
+    <div class="proj-card" data-aos="fade-up" data-aos-delay="200">
+      <a href="EduPay/index.html">
+        <img src="Ini folder isi foto/edupay.png" alt="Web Pengajuan" class="proj-thumb">
+      </a>
+      <div class="proj-body">
+        <span class="proj-tag">EDUPAY · Buku Pembayaran Digital</span>
+        <h5>Web Edupay</h5>
+        <p>Platform membuat transformasi sistem pembayaran dari konvensional menuju era digitalisasi keuangan. Pembaca akan diajak memahami konsep dasar, infrastruktur, regulasi, hingga ekosistem ekonomi digital di Indonesia secara komprehensif.</p>
+        <a href="EduPay/index.html" class="proj-link">Lihat project</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div data-aos="fade-right">
+      <div class="eyebrow">Kontak</div>
+      <h2>Mari Berdiskusi</h2>
+      <p>Punya project, ide kolaborasi, atau sekadar ingin menyapa? Kirim pesan lewat form di samping, saya akan membalas secepatnya.</p>
+    </div>
+    <form class="contact-box" data-aos="fade-left">
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Nama">
+      </div>
+      <div class="mb-3">
+        <input type="email" class="form-control" placeholder="Email">
+      </div>
+      <div class="mb-3">
+        <textarea class="form-control" rows="4" placeholder="Pesan"></textarea>
+      </div>
+      <button class="btn-kirim" type="submit">Kirim Pesan</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-kedua">
+  © 2026 Ilham Dimas Fadelianto — All Rights Reserved
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 900, once: true });
+
+  function toggleDarkMode() {
+    document.body.classList.toggle("light-mode");
+  }
+</script>
+
+</body>
+</html>

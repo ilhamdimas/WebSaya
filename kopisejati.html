@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopi Sejati | Mahakarya Rasa Di Setiap Cangkir</title>
+    <style>
+        /* --- ROOT VARIABLES & RESET --- */
+        .navbar-brand .dot{ color: var(--accent); }
+            .brand-logo{
+            width: 50px;
+            height: 50px;
+            display: block;
+            filter: brightness(4);
+        }
+        :root {
+            --primary: #c5a059;
+            --primary-dark: #a07e43;
+            --dark-brown: #231912;
+            --bg-light: #fdfbf7;
+            --text-dark: #3a2f28;
+            --text-light: #faf6f0;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(35, 25, 18, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .logo {
+            color: var(--primary);
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s, border-bottom 0.3s;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 6rem 8% 4rem 8%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark-brown);
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #705e52;
+            margin-bottom: 3.5rem;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .title-divider {
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 0 auto 1.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* --- HOME SECTION --- */
+        #home {
+            background: linear-gradient(rgba(20, 14, 10, 0.75), rgba(20, 14, 10, 0.75)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1600') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            padding-top: 0;
+        }
+
+        #home h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.2;
+            letter-spacing: 1px;
+        }
+
+        #home h1 span {
+            color: var(--primary);
+        }
+
+        #home p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            color: #e0dcd5;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--dark-brown);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.6);
+        }
+
+        /* --- PRODUCTS & MENU SECTION --- */
+        #products {
+            background-color: var(--bg-light);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(58, 47, 40, 0.15);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.7rem;
+            color: var(--dark-brown);
+            font-weight: 700;
+        }
+
+        .card p {
+            color: #705e52;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f3ece0;
+            padding-top: 1rem;
+        }
+
+        .card .price {
+            color: #b37d42;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .order-btn {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .order-btn:hover {
+            background-color: var(--primary);
+            color: var(--dark-brown);
+        }
+
+        /* --- TESTIMONI BONUS (Biar Makin Premium) --- */
+        .testimonials {
+            background-color: #f5ede0;
+            width: 100%;
+            padding: 5rem 8%;
+            text-align: center;
+        }
+
+        .testi-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .testi-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 320px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .testi-box p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .testi-box h4 {
+            color: var(--dark-brown);
+            font-weight: 600;
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact {
+            background-color: #fbf8f3;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4rem;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .contact-info {
+            text-align: left;
+            flex: 1;
+            min-width: 320px;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-brown);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            background: #fdf6ec;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+        }
+
+        .info-text p strong {
+            display: block;
+            color: var(--dark-brown);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-text p {
+            color: #66554a;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #e3dec3;
+            background-color: #fdfcf7;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 8px rgba(197, 160, 89, 0.2);
+            background-color: #fff;
+        }
+
+        .contact-form button {
+            background-color: var(--dark-brown);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1a120b;
+            color: #a39382;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.1);
+        }
+
+        footer p span {
+            color: var(--primary);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .cart-icon-wrapper { margin-left: auto; margin-right: 1rem; }
+            .cart-sidebar { max-width: 100%; right: -100%; }
+            .nav-links {
+                display: none; 
+            }
+            #home h1 {
+                font-size: 2.8rem;
+            }
+            #home p {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .contact-info, .contact-form {
+                padding: 2rem;
+            }
+        }
+        /* --- CART --- */
+.cart-icon-wrapper {
+    position: relative;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 2rem;
+    color: var(--text-light);
+    user-select: none;
+}
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: var(--primary);
+    color: var(--dark-brown);
+    font-size: 0.7rem;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cart-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+.cart-overlay.active { opacity: 1; visibility: visible; }
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: var(--bg-light);
+    z-index: 2000;
+    box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.cart-sidebar.active { right: 0; }
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: var(--dark-brown);
+    color: var(--text-light);
+}
+.cart-header h3 { font-size: 1.3rem; }
+.cart-close { font-size: 1.8rem; cursor: pointer; line-height: 1; }
+.cart-items { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
+.cart-empty { color: #918072; text-align: center; margin-top: 2rem; }
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ece6da;
+}
+.cart-item-info h4 { font-size: 1rem; color: var(--dark-brown); margin-bottom: 0.3rem; }
+.cart-item-info span { font-size: 0.85rem; color: #918072; }
+.cart-item-controls { display: flex; align-items: center; gap: 0.6rem; }
+.qty-btn {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 1px solid var(--primary);
+    background: #fff;
+    color: var(--primary-dark);
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+.qty-btn:hover { background-color: var(--primary); color: #fff; }
+.cart-item-remove { cursor: pointer; color: #c0392b; font-size: 0.8rem; margin-left: 0.4rem; }
+.cart-footer { padding: 1.5rem; border-top: 1px solid #ece6da; background: #fff; }
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--dark-brown);
+}
+.cart-checkout-btn { width: 100%; text-align: center; border: none; cursor: pointer; }
+.order-btn {
+    background-color: var(--primary);
+    color: var(--dark-brown);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+.order-btn:hover { background-color: var(--primary-dark); color: #fff; transform: translateY(-2px); }
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--dark-brown);
+    color: var(--text-light);
+    padding: 1rem 1.8rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    z-index: 3000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+    <div class="logo">
+        <a href="#home">
+            <img src="Ini folder isi foto/logokopibackground.png" alt="Logo" class="brand-logo">
+        </a>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact">Kontak</a></li>
+    </ul>
+    <div class="cart-icon-wrapper" onclick="openCart()">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+</header>
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>Keranjang Saya</h3>
+        <span class="cart-close" onclick="closeCart()">&times;</span>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <p class="cart-empty">Keranjang masih kosong.</p>
+    </div>
+    <div class="cart-footer">
+        <div class="cart-total-row">
+            <span>Total</span>
+            <span id="cartTotal">Rp 0</span>
+        </div>
+        <button class="btn cart-checkout-btn" onclick="checkoutCart()">Checkout via WhatsApp</button>
+    </div>
+</div>
+
+    <!-- HOME SECTION -->
+    <section id="home">
+        <h1>Sajian Kopi <span>Dari Hati</span></h1>
+        <p>Menghadirkan seni dan biji kopi pilihan terbaik dari petani lokal untuk menciptakan harmoni rasa sempurna di setiap cangkir pagi Anda.</p>
+        <a href="#products" class="btn">Jelajahi Menu</a>
+    </section>
+
+    <!-- PRODUCTS / MENU SECTION -->
+    <section id="products">
+        <h2 class="section-title">Menu Andalan Kami</h2>
+        <div class="title-divider"></div>
+        <p class="section-subtitle">Dibuat oleh barista profesional dengan resep otentik penuh ketelitian.</p>
+        
+        <div class="grid-container">
+            <!-- Product 1 -->
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500" alt="Espresso">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3>Espresso Sejati</h3>
+                        <p>Ekstraksi murni sari biji kopi arabika pilihan dengan karakter rasa yang pekat, tebal, dan aromatik.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">Rp 22.000</span>
+                       <button class="order-btn" data-name="Espresso Sejati" data-price="22000" onclick="addToCart(this)">Pesan</button>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=500" alt="Kopi Susu">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3>Kopi Susu Gula Aren</h3>
+                        <p>Perpaduan seimbang espresso, susu segar lembut (*creamy*), dan manisnya legit gula aren alami.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">Rp 25.000</span>
+                       <button class="order-btn" data-name="Kopi Susu Gula Aren" data-price="25000" onclick="addToCart(this)">Pesan</button>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=500" alt="Cappuccino">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h3>Cappuccino Klasik</h3>
+                        <p>Kombinasi kaya rasa dari espresso dengan takaran susu panas dan busa tebal yang simetris.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">Rp 28.000</span>
+                        <button class="order-btn" data-name="Cappuccino Klasik" data-price="28000" onclick="addToCart(this)">pesan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <div class="testimonials">
+        <h2 class="section-title" style="font-size: 2rem; margin-bottom: 0.5rem;">Apa Kata Mereka?</h2>
+        <div class="title-divider" style="width: 40px; margin-bottom: 2.5rem;"></div>
+        <div class="testi-container">
+            <div class="testi-box">
+                <p>"Kopi Susu Gula Arennya juara! Rasa kopinya tetep berasa tajam, ga ketutup sama manis susunya."</p>
+                <h4>— Rian D.</h4>
+            </div>
+            <div class="testi-box">
+                <p>"Suasana cafenya tenang dan rasa Cappuccino-nya bener-bener standar barista internasional."</p>
+                <h4>— Amalia S.</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <div class="title-divider"></div>
+        <p class="section-subtitle">Punya pertanyaan, kritik, atau ingin mengadakan acara? Kami siap mendengar.</p>
+        
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Kopi Sejati Cafe</h3>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <p><strong>Alamat</strong>Jl. Pancing No. 34C, Medan</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🕒</div>
+                    <div class="info-text">
+                        <p><strong>Jam Operasional</strong>Setiap Hari (08:00 - 22:00 WIB)</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">💬</div>
+                    <div class="info-text">
+                        <p><strong>WhatsApp</strong>+62 898-5571-698</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-text">
+                        <p><strong>Email</strong>halo@kopisejati.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="contact-form" action="#" method="POST" onsubmit="alert('Terima kasih! Pesan Anda berhasil dikirim.'); return false;">
+                <input type="text" placeholder="Nama Lengkap" required>
+                <input type="email" placeholder="Alamat Email" required>
+                <textarea rows="5" placeholder="Tulis pesan atau saran Anda di sini..." required></textarea>
+                <button type="submit">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <span>Kopi Sejati</span>. All Rights Reserved.</p>
+    </footer>
+
+   <!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"></div>
+
+<script>
+    let cart = [];
+
+    function formatRupiah(num) {
+        return 'Rp ' + num.toLocaleString('id-ID');
+    }
+
+    function addToCart(btn) {
+        const name = btn.getAttribute('data-name');
+        const price = parseInt(btn.getAttribute('data-price'), 10);
+
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+            existing.qty += 1;
+        } else {
+            cart.push({ name, price, qty: 1 });
+        }
+
+        renderCart();
+        showToast(name + ' ditambahkan ke keranjang');
+        openCart();
+    }
+
+    function changeQty(name, delta) {
+        const item = cart.find(i => i.name === name);
+        if (!item) return;
+        item.qty += delta;
+        if (item.qty <= 0) {
+            cart = cart.filter(i => i.name !== name);
+        }
+        renderCart();
+    }
+
+    function removeItem(name) {
+        cart = cart.filter(i => i.name !== name);
+        renderCart();
+    }
+
+    function renderCart() {
+        const cartItemsEl = document.getElementById('cartItems');
+        const cartCountEl = document.getElementById('cartCount');
+        const cartTotalEl = document.getElementById('cartTotal');
+
+        const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+        cartCountEl.textContent = totalQty;
+
+        if (cart.length === 0) {
+            cartItemsEl.innerHTML = '<p class="cart-empty">Keranjang masih kosong.</p>';
+            cartTotalEl.textContent = formatRupiah(0);
+            return;
+        }
+
+        let html = '';
+        let total = 0;
+        cart.forEach(item => {
+            const subtotal = item.price * item.qty;
+            total += subtotal;
+            html += `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <span>${formatRupiah(item.price)} x ${item.qty} = ${formatRupiah(subtotal)}</span>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                        <span class="cart-item-remove" onclick="removeItem('${item.name}')">Hapus</span>
+                    </div>
+                </div>
+            `;
+        });
+
+        cartItemsEl.innerHTML = html;
+        cartTotalEl.textContent = formatRupiah(total);
+    }
+
+    function openCart() {
+        document.getElementById('cartSidebar').classList.add('active');
+        document.getElementById('cartOverlay').classList.add('active');
+    }
+
+    function closeCart() {
+        document.getElementById('cartSidebar').classList.remove('active');
+        document.getElementById('cartOverlay').classList.remove('active');
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(window._toastTimeout);
+        window._toastTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2000);
+    }
+
+    function checkoutCart() {
+        if (cart.length === 0) {
+            showToast('Keranjang masih kosong.');
+            return;
+        }
+        let message = 'Halo Kopi Sejati, saya ingin memesan:%0A';
+        let total = 0;
+        cart.forEach(item => {
+            const subtotal = item.price * item.qty;
+            total += subtotal;
+            message += `- ${item.name} x${item.qty} (${formatRupiah(subtotal)})%0A`;
+        });
+        message += `%0ATotal: ${formatRupiah(total)}`;
+        window.open(`https://wa.me/6281234567890?text=${message}`, '_blank');
+    }
+</script>
+</body>
+</html>

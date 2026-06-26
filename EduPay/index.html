@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduPay — Masuk</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cover-screen">
+  <div class="cover">
+    <p class="cover-eyebrow">Buku Pembayaran Digital</p>
+    <h1>EduPay</h1>
+    <p class="tagline">Smart School Payment</p>
+
+    <div class="field">
+      <label for="nisn">NISN</label>
+      <input type="text" id="nisn" placeholder="Contoh: 123456" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label for="password">Kata Sandi</label>
+      <input type="password" id="password" placeholder="Masukkan kata sandi">
+    </div>
+
+    <button class="btn btn-gold" onclick="login()">Masuk</button>
+
+    <p class="error-msg" id="pesan"></p>
+
+    <div class="cover-foot">No. Akun tercatat dalam buku pembayaran sekolah</div>
+  </div>
+</div>
+
+<script>
+function login(){
+  let nisn = document.getElementById("nisn").value;
+  let password = document.getElementById("password").value;
+
+  if(nisn=="123456" && password=="admin123"){
+    window.location.href="dashboard.html";
+  } else {
+    document.getElementById("pesan").innerHTML="NISN atau kata sandi salah.";
+  }
+}
+</script>
+
+</body>
+</html>
